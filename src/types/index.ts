@@ -72,21 +72,55 @@ export interface IOasdiffCommonBreakingOptions extends IOasdiffCommonDiffOptions
 }
 
 export interface IOasdiffDiffOptions extends IOasdiffCommonDiffOptions {
-  format?: "json" | "yaml" | "text" | "markup" | "markdown" | "singleline" | "html";
+  format?:
+    | "json"
+    | "yaml"
+    | "text"
+    | "markup"
+    | "markdown"
+    | "singleline"
+    | "html";
   failOnDiff?: boolean;
 }
 
 export interface IOasdiffSummaryOptions extends IOasdiffCommonDiffOptions {
-  format?: "json" | "yaml" | "text" | "markup" | "markdown" | "singleline" | "html";
+  format?:
+    | "json"
+    | "yaml"
+    | "text"
+    | "markup"
+    | "markdown"
+    | "singleline"
+    | "html";
   failOnDiff?: boolean;
 }
 
 export interface IOasdiffBreakingOptions extends IOasdiffCommonBreakingOptions {
-  format?: "json" | "yaml" | "text" | "markup" | "markdown" | "singleline" | "html" | "githubactions" | "junit" | "sarif";
+  format?:
+    | "json"
+    | "yaml"
+    | "text"
+    | "markup"
+    | "markdown"
+    | "singleline"
+    | "html"
+    | "githubactions"
+    | "junit"
+    | "sarif";
 }
 
 export interface IOasdiffChangelogOptions extends IOasdiffCommonBreakingOptions {
-  format?: "json" | "yaml" | "text" | "markup" | "markdown" | "singleline" | "html" | "githubactions" | "junit" | "sarif";
+  format?:
+    | "json"
+    | "yaml"
+    | "text"
+    | "markup"
+    | "markdown"
+    | "singleline"
+    | "html"
+    | "githubactions"
+    | "junit"
+    | "sarif";
   level?: string;
 }
 

@@ -1,9 +1,9 @@
-import {execFile} from "node:child_process";
-import {access} from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { access } from "node:fs/promises";
 import path from "node:path";
-import {fileURLToPath} from "node:url";
-import {promisify} from "node:util";
-import type {IOasdiffRunResult} from "../types/index.js";
+import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
+import type { IOasdiffRunResult } from "../types/index.js";
 
 const execFileAsync = promisify(execFile);
 
@@ -12,7 +12,13 @@ function getBinaryName() {
 }
 
 function getPackageBinaryPath() {
-  return path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "bin", getBinaryName());
+  return path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "..",
+    "bin",
+    getBinaryName(),
+  );
 }
 
 async function fileExists(filePath: string) {
@@ -38,14 +44,14 @@ export async function resolveBinary(binaryPath?: string) {
   }
 
   throw new Error(
-    "oasdiff binary not found. Run `npm install` or `bun install` to trigger the postinstall script, or provide a binaryPath option."
+    "oasdiff binary not found. Run `npm install` or `bun install` to trigger the postinstall script, or provide a binaryPath option.",
   );
 }
 
 export async function execOasdiff(
   args: string[],
   binaryPath: string | undefined,
-  maxBuffer: number | undefined
+  maxBuffer: number | undefined,
 ): Promise<IOasdiffRunResult> {
   const resolved = await resolveBinary(binaryPath);
 
@@ -60,11 +66,15 @@ export async function execOasdiff(
     stdout = result.stdout;
     stderr = result.stderr;
   } catch (error: unknown) {
-    const execError = error as {stdout?: string; stderr?: string; code?: number};
+    const execError = error as {
+      stdout?: string;
+      stderr?: string;
+      code?: number;
+    };
     stdout = execError.stdout ?? "";
     stderr = execError.stderr ?? "";
     exitCode = typeof execError.code === "number" ? execError.code : 1;
   }
 
-  return {stdout, stderr, exitCode};
+  return { stdout, stderr, exitCode };
 }
