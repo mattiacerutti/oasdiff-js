@@ -1,6 +1,8 @@
-# oasdiff-js
+<h1 align="center">oasdiff-js</h1>
 
-TypeScript/JavaScript wrapper for [oasdiff](https://github.com/oasdiff/oasdiff) — a Go CLI for comparing OpenAPI specifications.
+<p align="center">
+  TypeScript/JavaScript wrapper for <a href="https://github.com/oasdiff/oasdiff">oasdiff</a> - a Go CLI for comparing OpenAPI specifications.
+</p>
 
 ## Installation
 
@@ -8,7 +10,21 @@ TypeScript/JavaScript wrapper for [oasdiff](https://github.com/oasdiff/oasdiff) 
 npm install @oasdiff-js/oasdiff-js
 ```
 
+```bash
+yarn add @oasdiff-js/oasdiff-js
+```
+
+```bash
+pnpm add @oasdiff-js/oasdiff-js
+```
+
+```bash
+bun add @oasdiff-js/oasdiff-js
+```
+
 The oasdiff binary is downloaded automatically during install for your platform (macOS, Linux, Windows).
+
+> **Note:** Some package managers block or skip lifecycle scripts. If the binary is not downloaded, see [Troubleshooting](#troubleshooting).
 
 ## Usage
 
@@ -82,8 +98,72 @@ interface IOasdiffBreakingResult extends IOasdiffRunResult {
 
 ## CLI
 
-The package also installs an `oasdiff` binary:
+The package installs an `oasdiff` binary that you can use directly:
 
 ```bash
 npx oasdiff breaking base.yaml revision.yaml
 ```
+
+```bash
+bunx oasdiff breaking base.yaml revision.yaml
+```
+
+For the full CLI reference, see the [oasdiff documentation](https://github.com/oasdiff/oasdiff).
+
+## Troubleshooting
+
+### Binary not found after install
+
+If your package manager blocks or skips lifecycle scripts, the oasdiff binary may not be downloaded during install. This can happen with:
+
+- **Bun**: blocks scripts by default for untrusted packages
+- **npm / pnpm / yarn**: installed with `--ignore-scripts`
+- **Corporate or CI environments**: scripts disabled for security
+
+#### Bun
+
+Run after install:
+
+```bash
+bun pm trust oasdiff-js
+bun install
+```
+
+Or add to your `package.json`:
+
+```json
+{
+  "trustedDependencies": ["oasdiff-js"]
+}
+```
+
+Then reinstall:
+
+```bash
+rm -rf node_modules bun.lock
+bun install
+```
+
+#### npm / pnpm / yarn
+
+If you installed with `--ignore-scripts`, you can run the install script manually:
+
+```bash
+cd node_modules/oasdiff-js
+node ./npm-install/postinstall.js
+```
+
+Or reinstall without ignoring scripts:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### Other environments
+
+If the above does not work, you can also download the correct binary manually from the [oasdiff releases page](https://github.com/oasdiff/oasdiff/releases) and pass its path to the programmatic API via the `binaryPath` option, or place it in `node_modules/oasdiff-js/bin/oasdiff` (or `oasdiff.exe` on Windows).
+
+## License
+
+[Apache-2.0](./LICENSE)
