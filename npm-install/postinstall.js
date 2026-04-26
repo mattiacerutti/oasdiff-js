@@ -19,10 +19,10 @@ function getProxyUrl() {
 
 async function install() {
   const packageJson = JSON.parse(await fs.readFile(path.join(packageRoot, "package.json"), "utf8"));
-  let version = packageJson.version;
+  let version = packageJson.oasdiffVersion ?? packageJson.version;
 
   if (typeof version !== "string") {
-    throw new Error("Missing version in package.json");
+    throw new Error("Missing oasdiffVersion in package.json");
   }
 
   if (version.startsWith("v")) {

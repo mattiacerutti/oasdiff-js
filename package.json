@@ -1,10 +1,28 @@
 {
   "name": "@oasdiff-js/oasdiff-js",
   "version": "0.0.1",
+  "oasdiffVersion": "1.15.0",
   "description": "TypeScript wrapper for the oasdiff CLI",
   "author": "mattiacerutti",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/oasdiff/oasdiff",
+  "homepage": "https://github.com/mattiacerutti/oasdiff-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattiacerutti/oasdiff-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattiacerutti/oasdiff-js/issues"
+  },
+  "keywords": [
+    "oasdiff",
+    "openapi",
+    "swagger",
+    "diff",
+    "breaking-changes",
+    "api",
+    "cli"
+  ],
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
