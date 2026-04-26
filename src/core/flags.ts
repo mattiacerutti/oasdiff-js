@@ -1,7 +1,7 @@
 import type {
   IOasdiffCommonDiffOptions,
   IOasdiffCommonBreakingOptions,
-} from "../types/index.js";
+} from "@/types";
 
 export function addCommonDiffFlags(
   args: string[],

@@ -3,7 +3,7 @@ import { access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import type { IOasdiffRunResult } from "../types/index.js";
+import type { IOasdiffRunResult } from "@/types";
 
 const execFileAsync = promisify(execFile);
 

@@ -1,10 +1,7 @@
-import { execOasdiff } from "../core/exec.js";
-import { addCommonDiffFlags } from "../core/flags.js";
-import { withTempSpecs } from "../core/specs.js";
-import type {
-  IOasdiffRunResult,
-  IOasdiffSummaryOptions,
-} from "../types/index.js";
+import { execOasdiff } from "@/core/exec";
+import { addCommonDiffFlags } from "@/core/flags";
+import { withTempSpecs } from "@/core/specs";
+import type { IOasdiffRunResult, IOasdiffSummaryOptions } from "@/types";
 
 export async function runOasdiffSummary(
   basePath: string,

@@ -1,10 +1,7 @@
-import { execOasdiff } from "../core/exec.js";
-import { addCommonBreakingFlags } from "../core/flags.js";
-import { withTempSpecs } from "../core/specs.js";
-import type {
-  IOasdiffBreakingResult,
-  IOasdiffChangelogOptions,
-} from "../types/index.js";
+import { execOasdiff } from "@/core/exec";
+import { addCommonBreakingFlags } from "@/core/flags";
+import { withTempSpecs } from "@/core/specs";
+import type { IOasdiffBreakingResult, IOasdiffChangelogOptions } from "@/types";
 
 function parseChanges(stdout: string) {
   const content = stdout.trim();

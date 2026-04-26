@@ -23,6 +23,12 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .cache
 *.tsbuildinfo
 
+# compiled artifacts
+*.js
+*.d.ts
+!bin/*.js
+!npm-install/*.js
+
 # downloaded binaries and artifacts from tarball
 bin/*
 !bin/*.js

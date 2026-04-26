@@ -1,8 +1,5 @@
-import { execOasdiff } from "../core/exec.js";
-import type {
-  IOasdiffChecksOptions,
-  IOasdiffChecksResult,
-} from "../types/index.js";
+import { execOasdiff } from "@/core/exec";
+import type { IOasdiffChecksOptions, IOasdiffChecksResult } from "@/types";
 
 function parseChecks(stdout: string) {
   const content = stdout.trim();
