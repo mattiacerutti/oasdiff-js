@@ -9,9 +9,12 @@ const __dirname = path.dirname(__filename);
 const binaryName = process.platform === "win32" ? "oasdiff.exe" : "oasdiff";
 
 try {
-  execFileSync(path.resolve(__dirname, binaryName), process.argv.slice(2), {
+  const binaryPath = path.resolve(__dirname, binaryName);
+
+  execFileSync(binaryPath, process.argv.slice(2), {
     stdio: "inherit",
   });
-} catch {
+} catch (error) {
+  console.error(error instanceof Error ? error.message : error);
   exit(1);
 }

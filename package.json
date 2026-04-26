@@ -48,7 +48,8 @@
   },
   "files": [
     "dist",
-    "bin",
+    "bin/oasdiff.js",
+    "bin/LICENSE",
     "npm-install"
   ],
   "engines": {
