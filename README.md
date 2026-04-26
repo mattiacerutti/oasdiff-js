@@ -87,7 +87,3 @@ The package also installs an `oasdiff` binary:
 ```bash
 npx oasdiff breaking base.yaml revision.yaml
 ```
-
-## License
-
-Apache-2.0
