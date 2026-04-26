@@ -30,6 +30,11 @@ jobs:
         with:
           bun-version: latest
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -37,7 +42,7 @@ jobs:
         run: |
           bun run lint
           bun run typecheck
-          bun test
+          bun run test
           bun run build
 
       - name: Configure git
@@ -58,8 +63,8 @@ jobs:
           tag=$(git describe --tags --abbrev=0)
           echo "name=$tag" >> "$GITHUB_OUTPUT"
 
-      - name: Publish to npm with provenance
-        run: bunx npm publish --provenance --access public
+      - name: Publish to npm
+        run: npm publish --access public
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
