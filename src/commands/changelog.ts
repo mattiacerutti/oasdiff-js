@@ -1,7 +1,7 @@
-import { execOasdiff } from "@/core/exec";
-import { addCommonBreakingFlags } from "@/core/flags";
-import { withTempSpecs } from "@/core/specs";
-import type { IOasdiffBreakingResult, IOasdiffChangelogOptions } from "@/types";
+import {execOasdiff} from "@/core/exec";
+import {addCommonBreakingFlags} from "@/core/flags";
+import {withTempSpecs} from "@/core/specs";
+import type {IOasdiffBreakingResult, IOasdiffChangelogOptions} from "@/types";
 
 function parseChanges(stdout: string) {
   const content = stdout.trim();
@@ -9,11 +9,7 @@ function parseChanges(stdout: string) {
   return JSON.parse(content);
 }
 
-export async function runOasdiffChangelog(
-  basePath: string,
-  revisionPath: string,
-  options: IOasdiffChangelogOptions = {},
-): Promise<IOasdiffBreakingResult> {
+export async function runOasdiffChangelog(basePath: string, revisionPath: string, options: IOasdiffChangelogOptions = {}): Promise<IOasdiffBreakingResult> {
   const format = options.format ?? "json";
   const args = ["changelog", "--format", format, basePath, revisionPath];
   addCommonBreakingFlags(args, options);
@@ -25,12 +21,6 @@ export async function runOasdiffChangelog(
   };
 }
 
-export async function runOasdiffChangelogFromSpecs(
-  baseSpec: object,
-  revisionSpec: object,
-  options: IOasdiffChangelogOptions = {},
-): Promise<IOasdiffBreakingResult> {
-  return withTempSpecs(baseSpec, revisionSpec, (basePath, revisionPath) =>
-    runOasdiffChangelog(basePath, revisionPath, options),
-  );
+export async function runOasdiffChangelogFromSpecs(baseSpec: object, revisionSpec: object, options: IOasdiffChangelogOptions = {}): Promise<IOasdiffBreakingResult> {
+  return withTempSpecs(baseSpec, revisionSpec, (basePath, revisionPath) => runOasdiffChangelog(basePath, revisionPath, options));
 }

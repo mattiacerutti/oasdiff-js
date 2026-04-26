@@ -1,7 +1,7 @@
-import { execOasdiff } from "@/core/exec";
-import { addCommonBreakingFlags } from "@/core/flags";
-import { withTempSpecs } from "@/core/specs";
-import type { IOasdiffBreakingOptions, IOasdiffBreakingResult } from "@/types";
+import {execOasdiff} from "@/core/exec";
+import {addCommonBreakingFlags} from "@/core/flags";
+import {withTempSpecs} from "@/core/specs";
+import type {IOasdiffBreakingOptions, IOasdiffBreakingResult} from "@/types";
 
 function parseChanges(stdout: string) {
   const content = stdout.trim();
@@ -9,11 +9,7 @@ function parseChanges(stdout: string) {
   return JSON.parse(content);
 }
 
-export async function runOasdiffBreaking(
-  basePath: string,
-  revisionPath: string,
-  options: IOasdiffBreakingOptions = {},
-): Promise<IOasdiffBreakingResult> {
+export async function runOasdiffBreaking(basePath: string, revisionPath: string, options: IOasdiffBreakingOptions = {}): Promise<IOasdiffBreakingResult> {
   const format = options.format ?? "json";
   const args = ["breaking", "--format", format, basePath, revisionPath];
   addCommonBreakingFlags(args, options);
@@ -24,12 +20,6 @@ export async function runOasdiffBreaking(
   };
 }
 
-export async function runOasdiffBreakingFromSpecs(
-  baseSpec: object,
-  revisionSpec: object,
-  options: IOasdiffBreakingOptions = {},
-): Promise<IOasdiffBreakingResult> {
-  return withTempSpecs(baseSpec, revisionSpec, (basePath, revisionPath) =>
-    runOasdiffBreaking(basePath, revisionPath, options),
-  );
+export async function runOasdiffBreakingFromSpecs(baseSpec: object, revisionSpec: object, options: IOasdiffBreakingOptions = {}): Promise<IOasdiffBreakingResult> {
+  return withTempSpecs(baseSpec, revisionSpec, (basePath, revisionPath) => runOasdiffBreaking(basePath, revisionPath, options));
 }
