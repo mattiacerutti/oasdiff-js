@@ -1,12 +1,22 @@
 {
   "name": "@oasdiff-js/oasdiff-windows-arm64",
   "version": "1.15.0",
-  "description": "oasdiff binary for Windows ARM64",
+  "description": "Official oasdiff CLI binary redistributed for oasdiff-js on Windows ARM64",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/mattiacerutti/oasdiff-js#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattiacerutti/oasdiff-js.git"
   },
+  "bugs": {
+    "url": "https://github.com/mattiacerutti/oasdiff-js/issues"
+  },
+  "keywords": [
+    "oasdiff",
+    "openapi",
+    "binary",
+    "native"
+  ],
   "os": [
     "win32"
   ],
