@@ -36,6 +36,10 @@ bun run sync-binaries
 
 Source code uses `.oasdiff-bin/`. Published packages use platform-specific optional dependencies instead.
 
+### Versioning model
+
+Native packages (`@oasdiff-js/oasdiff-*`) are versioned to match the upstream oasdiff binary they contain. The main `@oasdiff-js/oasdiff-js` package follows its own semver and pins exact native versions in `optionalDependencies`.
+
 ## Usage
 
 ### Programmatic API
