@@ -6,15 +6,28 @@ import {
 import { findRepoRoot, repoPath } from "../utils/paths";
 
 async function packageExists(name: string, version: string): Promise<boolean> {
-  const result = Bun.spawnSync(
-    ["npm", "view", `${name}@${version}`, "version"],
-    {
-      stdout: "ignore",
-      stderr: "ignore",
-    },
-  );
+  const retries = 5;
+  const delayMs = 3000;
 
-  return result.exitCode === 0;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const result = Bun.spawnSync(
+      ["npm", "view", `${name}@${version}`, "version"],
+      {
+        stdout: "ignore",
+        stderr: "ignore",
+      },
+    );
+
+    if (result.exitCode === 0) {
+      return true;
+    }
+
+    if (attempt < retries) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+
+  return false;
 }
 
 async function main(): Promise<void> {
