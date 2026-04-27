@@ -43,7 +43,11 @@
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --check ./src ./tests",
     "test": "vitest run",
-    "sync-binaries": "bun scripts/sync-binaries.ts"
+    "sync-binaries": "bun scripts/sync-binaries.ts",
+    "prepare-native-packages": "bun scripts/release/prepare-native-packages.ts",
+    "publish-native-packages": "bun scripts/release/publish-native-packages.ts",
+    "check-native-versions": "bun scripts/release/check-native-versions.ts",
+    "needs-native-release": "bun scripts/release/needs-native-release.ts"
   },
   "bin": {
     "oasdiff": "dist/cli.js"
