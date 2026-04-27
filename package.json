@@ -1,6 +1,6 @@
 {
   "name": "@oasdiff-js/oasdiff-js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "oasdiffVersion": "1.15.0",
   "description": "TypeScript/JavaScript wrapper for the oasdiff CLI",
   "author": {
