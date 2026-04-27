@@ -22,9 +22,19 @@ pnpm add @oasdiff-js/oasdiff-js
 bun add @oasdiff-js/oasdiff-js
 ```
 
-The oasdiff binary is downloaded automatically during install for your platform (macOS, Linux, Windows).
+The correct oasdiff binary for your platform is installed automatically via an optional dependency (macOS, Linux, Windows).
 
-> **Note:** Some package managers block or skip lifecycle scripts. If the binary is not downloaded, see [Troubleshooting](#troubleshooting).
+## Development
+
+The upstream oasdiff version used by this repo is `oasdiffVersion` in `package.json`.
+
+After changing it locally, sync the dev binary for your platform before running tests or examples:
+
+```bash
+bun run sync-binaries
+```
+
+Source code uses `.oasdiff-bin/`. Published packages use platform-specific optional dependencies instead.
 
 ## Usage
 
@@ -114,55 +124,35 @@ For the full CLI reference, see the [oasdiff documentation](https://github.com/o
 
 ### Binary not found after install
 
-If your package manager blocks or skips lifecycle scripts, the oasdiff binary may not be downloaded during install. This can happen with:
+If the platform-specific optional dependency was not installed, the binary will be missing. This can happen when:
 
-- **Bun**: blocks scripts by default for untrusted packages
-- **npm / pnpm / yarn**: installed with `--ignore-scripts`
-- **Corporate or CI environments**: scripts disabled for security
+- **Optional dependencies are disabled**: some CI environments or lockfile generators skip optional dependencies
+- **Unsupported platform**: your OS or architecture does not have a prebuilt binary
 
-#### Bun
-
-Run after install:
-
-```bash
-bun pm trust oasdiff-js
-bun install
-```
-
-Or add to your `package.json`:
-
-```json
-{
-  "trustedDependencies": ["oasdiff-js"]
-}
-```
-
-Then reinstall:
-
-```bash
-rm -rf node_modules bun.lock
-bun install
-```
-
-#### npm / pnpm / yarn
-
-If you installed with `--ignore-scripts`, you can run the install script manually:
-
-```bash
-cd node_modules/oasdiff-js
-node ./npm-install/postinstall.js
-```
-
-Or reinstall without ignoring scripts:
+#### Reinstall with optional dependencies
 
 ```bash
 rm -rf node_modules package-lock.json
 npm install
 ```
 
+For **pnpm**:
+
+```bash
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+For **bun**:
+
+```bash
+rm -rf node_modules bun.lock
+bun install
+```
+
 #### Other environments
 
-If the above does not work, you can also download the correct binary manually from the [oasdiff releases page](https://github.com/oasdiff/oasdiff/releases) and pass its path to the programmatic API via the `binaryPath` option, or place it in `node_modules/oasdiff-js/bin/oasdiff` (or `oasdiff.exe` on Windows).
+If the above does not work, you can also download the correct binary manually from the [oasdiff releases page](https://github.com/oasdiff/oasdiff/releases) and pass its path to the programmatic API via the `binaryPath` option.
 
 ## License
 

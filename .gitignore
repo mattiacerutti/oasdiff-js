@@ -26,12 +26,10 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # compiled artifacts
 *.js
 *.d.ts
-!bin/*.js
-!npm-install/*.js
+!scripts/**/*.js
 
-# downloaded binaries and artifacts from tarball
-bin/*
-!bin/*.js
+# downloaded binaries
+.oasdiff-bin/
 
 # IntelliJ based IDEs
 .idea

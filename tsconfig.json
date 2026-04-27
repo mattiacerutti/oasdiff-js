@@ -12,9 +12,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["bun", "vitest/globals"],
+    "types": ["bun", "vitest/globals", "node"],
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "scripts/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

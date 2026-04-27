@@ -1,7 +1,10 @@
-import {defineConfig} from "tsup";
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  define: {
+    OASDIFF_JS_PACKAGE_BUILD: "true",
+  },
+  entry: ["src/index.ts", "src/cli.ts"],
   outDir: "dist",
   format: ["esm"],
   dts: true,
