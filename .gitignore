@@ -27,6 +27,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 *.js
 *.d.ts
 !scripts/**/*.js
+!packages/**/index.js
 
 # downloaded binaries
 .oasdiff-bin/
